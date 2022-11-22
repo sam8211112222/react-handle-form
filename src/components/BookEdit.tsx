@@ -15,7 +15,8 @@ const BookEdit = (props:BEProps) =>{
 
     const handleSubmit = (event:ChangeEvent<HTMLFormElement>) =>{
         event.preventDefault()
-        onSubmit(book.id,book.title)
+        console.log(book.id,book.title)
+        onSubmit(book.id,title)
     }
 
     return <form className={"book-edit"} onSubmit={handleSubmit}>
