@@ -3,7 +3,7 @@ import BookShow from "./BookShow";
 interface BLProps {
     books: { id: number, title: string }[]
     onDelete:(id: number) => void
-    onEdit:any
+    onEdit:(id:number, title:string) => void
 }
 
 

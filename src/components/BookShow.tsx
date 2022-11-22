@@ -4,7 +4,7 @@ import BookEdit from "./BookEdit";
 interface BSProps {
     book: { id: number, title: string }
     onDelete: (id: number) => void
-    onEdit:any
+    onEdit:(id:number, title:string) => void
 }
 
 const BookShow = (props: BSProps) => {
@@ -19,14 +19,15 @@ const BookShow = (props: BSProps) => {
         setShowEdit(!showEdit)
     }
 
-    const handleSubmit =()=>{
+    const handleSubmit =(id:number,newTitle:string)=>{
         setShowEdit(false)
+        onEdit(id,newTitle)
     }
 
     let content: JSX.Element = <h3>{book.title}</h3>
     if (showEdit){
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        content = <BookEdit onSubmit={handleSubmit} onEdit={onEdit} book={book}/>
+        content = <BookEdit onSubmit={handleSubmit}  book={book}/>
     }
     return <div className={"book-show"}>
         {content}

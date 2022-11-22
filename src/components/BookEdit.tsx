@@ -2,12 +2,11 @@ import React, {ChangeEvent} from "react";
 
 interface BEProps{
     book:{ id: number, title: string }
-    onEdit:any
-    onSubmit:any
+    onSubmit: (id: number, title: string ) => void
 }
 
 const BookEdit = (props:BEProps) =>{
-    const {book,onEdit,onSubmit} = props
+    const {book,onSubmit} = props
     const [title, setTitle] = React.useState(book.title);
 
     const handleChange = (event:ChangeEvent<HTMLInputElement>) =>{
@@ -16,8 +15,7 @@ const BookEdit = (props:BEProps) =>{
 
     const handleSubmit = (event:ChangeEvent<HTMLFormElement>) =>{
         event.preventDefault()
-        onEdit(book.id,title)
-        onSubmit()
+        onSubmit(book.id,book.title)
     }
 
     return <form className={"book-edit"} onSubmit={handleSubmit}>

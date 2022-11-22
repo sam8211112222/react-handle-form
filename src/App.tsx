@@ -7,15 +7,13 @@ function App() {
 
     const [books, setBooks] = React.useState<{ id: number, title: string }[]>([])
 
-    const editBookById = (id:number, newTitle:string) =>{
-        const a = books.map( b => {
-            if (b.id === id){
-                return {...b,title:newTitle}
+    const editBookById = (id: number, newTitle: string) => {
+        setBooks(books.map(b => {
+            if (b.id === id) {
+                return {...b, title: newTitle}
             }
             return b
-        })
-        console.log(a)
-        setBooks(a)
+        }))
     }
 
     const deleteBookHandler = (bookId: number) => {
