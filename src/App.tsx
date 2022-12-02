@@ -2,25 +2,25 @@ import React from 'react';
 import './App.css';
 import BookCreate from "./components/BookCreate";
 import BookList from "./components/BookList";
+import axios from "axios";
 
 function App() {
 
     const [books, setBooks] = React.useState<{ id: number, title: string }[]>([])
 
     const editBookById = (id: number, newTitle: string) => {
-        setBooks(books.map(b =>  b.id === id?  {...b, title: newTitle}: b))
+        setBooks(books.map(b => b.id === id ? {...b, title: newTitle} : b))
     }
 
     const deleteBookHandler = (bookId: number) => {
         setBooks(books.filter(b => b.id !== bookId))
     }
 
-    const addBookHandler = (title: string) => {
-        setBooks([...books, {
-            id: Math.round(Math.random() * 9999),
-            title: title
-        }
-        ])
+    const addBookHandler = async (title: string) => {
+        const response = await axios.post('http://localhost:3001/books',{
+            title
+        })
+        setBooks([...books, response.data])
     }
 
     return (
